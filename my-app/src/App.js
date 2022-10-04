@@ -16,11 +16,9 @@ export function App() {
       console.log(socket.id); // x8WIv7-mJelg7on_ALbx
       setConnection(true);
       socket.on("users", (arg) => {
-        console.log(arg);
         setUsers(arg);
       });
       socket.on("messages", (arg) => {
-        console.log(arg);
         setMessages(arg);
       });
       socket.on("message", (arg) => {

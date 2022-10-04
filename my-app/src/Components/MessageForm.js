@@ -14,12 +14,13 @@ export function MessageForm({ user }) {
   return user !== null ? (
     <div>
       <form onSubmit={(e) => onSubmit(e)}>
-        <label for="messageContent">Zone de message :</label>
+        <label htmlFor="messageContent">Zone de message :</label>
         <input
           type="text"
           name="messageContent"
           placeholder="Votre message ici..."
           onChange={(e) => setValue(e.target.value)}
+          value={value}
         />
       </form>
     </div>

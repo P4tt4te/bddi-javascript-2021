@@ -1,7 +1,7 @@
 import { socket } from "./socket";
+import { getCryptoCoin } from "./Api/getCryptoCoin";
 
 export const sendMessage = (user, message) => {
-  console.log(Date.now());
 
   return socket.emit("message", {
     id: "sdfsdfsdfdsf",
