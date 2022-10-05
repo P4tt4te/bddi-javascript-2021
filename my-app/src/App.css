@@ -1,29 +1,70 @@
+:root {
+  --background: #1D1D1D;
+}
+
 .App {
   display: flex;
   gap: 20px;
-  margin: 20px;
+  padding: 20px;
   height: calc(100vh - 40px);
   width: calc(100vw - 40px);
-  font-familly: 'inter', sans-serif;
+  background-image: url("./Assets/background.webp");
+  background-size: cover;
+  background-position: bottom;
+}
+
+.box {
+  background-color: #00000026;
+  border-radius: 15px;
+}
+
+.underBox {
+  
 }
 
 .Menu {
   display: flex;
   flex-direction: column;
+  gap: 20px;
+  width: 300px;
+}
+
+.MenuTitle {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.MenuTitleText {
+  font-size: 2rem;
+  fontweight: 500;
+  margin: 0;
+}
+
+.ChannelMenu {
+  padding: 20px 10px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100%;
+}
+
+.ChannelMenuList {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.AvatarMenu {
+  display: flex;
+  padding: 10px;
 }
 
 .ChatContainer {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  
+  width: 100%;
 }
 
-.box {
-  background-color: #00000026;
-  border-radius: 10px;
-}
 
-.underBox {
-  
-}

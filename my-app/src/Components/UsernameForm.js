@@ -14,7 +14,6 @@ export function UsernameForm({ user, onUpdate }) {
   return user !== null ? (
     <div>
       <form onSubmit={(e) => onSubmit(e)}>
-        <label htmlFor="usernameContent">Changer de pseudo :</label>
         <input
           type="text"
           name="usernameContent"

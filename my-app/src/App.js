@@ -7,6 +7,8 @@ import { getCryptoCoin } from "./Api/getCryptoCoin";
 import "./App.css";
 import { MessageForm } from "./Components/MessageForm";
 import { UsernameForm } from "./Components/UsernameForm";
+import logoImage from "./Assets/logo.svg";
+import avatarImage from "./Assets/profil.svg";
 
 export function App() {
   const [users, setUsers] = useState(null);
@@ -72,8 +74,19 @@ socket.on("messages", (arg) => {
   return (
     <div className="App">
       <div className="Menu">
-        <div className="box">liste des channel</div>
-        <div className="box">
+        <div className="MenuTitle">
+          <img src={logoImage} alt="logo" />
+          <h1 className="MenuTitleText">Blockchat</h1>
+        </div>
+        <div className="ChannelMenu box">
+          <span>Liste des channels :</span>
+          <div className="ChannelMenuList">
+            <span>#💬 -général</span>
+            <span>#🚀 -cryptomonnaie</span>
+          </div>
+        </div>
+        <div className="AvatarMenu box">
+          <img src={avatarImage} alt="Logo Avatar" />
           <UsernameForm
             user={{ id: socket.id, name: username }}
             onUpdate={(val) => setUsername(val)}
