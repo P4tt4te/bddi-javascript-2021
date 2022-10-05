@@ -3,8 +3,8 @@ import { socket } from "./socket";
 import { UsersList } from "./Components/UsersList";
 import { MessagesList } from "./Components/MessagesList";
 import { sendMessage } from "./sendMessage";
-import { getCryptoCoin } from "./Api/getCryptoCoin";
 import "./App.css";
+import { getCryptoCoin } from "./Api/getCryptoCoin";
 import { MessageForm } from "./Components/MessageForm";
 import { UsernameForm } from "./Components/UsernameForm";
 import logoImage from "./Assets/logo.svg";
@@ -103,7 +103,7 @@ socket.on("messages", (arg) => {
         <div>
           <div>
             <button onClick={() => showHistory()}>Avoir l'historique</button>
-            <button onClick={() => getCryptoCoin()}>getCryptoCoin</button>
+            <button onClick={() => getCryptoCoin("bitcoin")}>getCryptoCoin</button>
           </div>
           <MessageForm user={{ id: socket.id, name: username }} />
         </div>
