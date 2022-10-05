@@ -30,7 +30,7 @@ export function App() {
     socket.emit("getUsers");
     socket.on("message", (arg) => {
       console.log("new message " + arg.value);
-      console.log("argid "+ arg.id);
+      console.log("argid " + arg.id);
       if (true) {
         console.log("yes");
         setMessages((laliste) => [...laliste, arg]);
@@ -89,8 +89,12 @@ socket.on("messages", (arg) => {
         <div className="ChannelMenu box">
           <span>Liste des channels :</span>
           <div className="ChannelMenuList">
-            <span>#💬 -général</span>
-            <span>#🚀 -cryptomonnaie</span>
+            <div className="ChannelMenuListElement">
+              <span>#💬 -général</span>
+            </div>
+            <div className="ChannelMenuListElement">
+              <span>#🚀 -cryptomonnaie</span>
+            </div>
           </div>
         </div>
         <div className="AvatarMenu box">
@@ -105,17 +109,32 @@ socket.on("messages", (arg) => {
         <div>
           <h2>UsersList : </h2>
           <UsersList users={users} />
+          {historyMessages && (
+            <>
+              <h2>MessagesHistoryList :</h2>
+              <MessagesList messages={historyMessages} />
+            </>
+          )}
           <h2>MessagesList : </h2>
           <MessagesList messages={messages} />
         </div>
         <div className="ChatContainerAction">
-          <div className={modal ? "ChatContainerActionModal on" : "ChatContainerActionModal off"}>
+          <div
+            className={
+              modal
+                ? "ChatContainerActionModal on"
+                : "ChatContainerActionModal off"
+            }
+          >
             <button onClick={() => showHistory()}>Avoir l'historique</button>
             <button onClick={() => getCryptoCoin("bitcoin")}>
               getCryptoCoin
             </button>
           </div>
-          <div className="ChatContainerActionAdd" onClick={() => setModal(!modal)}>
+          <div
+            className="ChatContainerActionAdd"
+            onClick={() => setModal(!modal)}
+          >
             <img src={addImage} alt="Plus options" />
           </div>
           <MessageForm user={{ id: socket.id, name: username }} />
