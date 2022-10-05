@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { sendMessage } from "../sendMessage";
+import './MessageForm.css';
 
 export function MessageForm({ user }) {
   const [value, setValue] = useState("");
@@ -12,11 +13,11 @@ export function MessageForm({ user }) {
   }
 
   return user !== null ? (
-    <div>
-      <form onSubmit={(e) => onSubmit(e)}>
-        <label htmlFor="messageContent">Zone de message :</label>
+    <div className="MessageForm">
+      <form className="MessageForm" onSubmit={(e) => onSubmit(e)}>
         <input
           type="text"
+          className="MessageFormInput"
           name="messageContent"
           placeholder="Envoyer un message dans 💬 -général"
           onChange={(e) => setValue(e.target.value)}

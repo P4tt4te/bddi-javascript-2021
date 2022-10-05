@@ -8,6 +8,7 @@ import { getCryptoCoin } from "./Api/getCryptoCoin";
 import { MessageForm } from "./Components/MessageForm";
 import { UsernameForm } from "./Components/UsernameForm";
 import logoImage from "./Assets/logo.svg";
+import addImage from "./Assets/add.svg";
 import avatarImage from "./Assets/profil.svg";
 
 export function App() {
@@ -15,6 +16,7 @@ export function App() {
   const [username, setUsername] = useState("Anonymous");
   const [messages, setMessages] = useState([]);
   const [historyMessages, setHistoryMessages] = useState(null);
+  const [modal, setModal] = useState(false);
 
   useEffect(() => {
     socket.on("connect", () => {
@@ -28,7 +30,13 @@ export function App() {
     socket.emit("getUsers");
     socket.on("message", (arg) => {
       console.log("new message " + arg.value);
-      setMessages((laliste) => [...laliste, arg]);
+      console.log("argid "+ arg.id);
+      if (true) {
+        console.log("yes");
+        setMessages((laliste) => [...laliste, arg]);
+      } else {
+        console.log("message existe déjà");
+      }
     });
   }, []);
 
@@ -100,10 +108,15 @@ socket.on("messages", (arg) => {
           <h2>MessagesList : </h2>
           <MessagesList messages={messages} />
         </div>
-        <div>
-          <div>
+        <div className="ChatContainerAction">
+          <div className={modal ? "ChatContainerActionModal on" : "ChatContainerActionModal off"}>
             <button onClick={() => showHistory()}>Avoir l'historique</button>
-            <button onClick={() => getCryptoCoin("bitcoin")}>getCryptoCoin</button>
+            <button onClick={() => getCryptoCoin("bitcoin")}>
+              getCryptoCoin
+            </button>
+          </div>
+          <div className="ChatContainerActionAdd" onClick={() => setModal(!modal)}>
+            <img src={addImage} alt="Plus options" />
           </div>
           <MessageForm user={{ id: socket.id, name: username }} />
         </div>

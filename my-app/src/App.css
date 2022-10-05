@@ -65,6 +65,36 @@
   flex-direction: column;
   justify-content: flex-end;
   width: 100%;
+  padding: 15px;
 }
+
+.ChatContainerAction {
+  display: flex;
+  border: 1px solid white;
+  padding: 7px;
+  border-radius: 15px;
+  gap: 10px;
+  position: relative;
+}
+
+.ChatContainerActionAdd {
+  height: 34px;
+}
+
+.ChatContainerActionModal.on {
+  position: absolute;
+  top: -50px;
+  left: 0;
+  background: var(--background);
+  padding: 10px;
+  border-radius: 15px;
+  display: flex;
+  gap: 2px;
+}
+
+.ChatContainerActionModal.off {
+  display: none;
+}
+
 
 

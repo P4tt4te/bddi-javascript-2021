@@ -1,0 +1,20 @@
+.MessageForm {
+    width: 100%;
+}
+
+.MessageFormInput {
+  padding: 5px;
+  outline: none;
+  border-radius: 15px;
+  background: transparent;
+  color: #FFFFFF;
+  border: none;
+  font-size: 1.25rem;
+  width: 100%;
+  font-weight: 300;
+  font-family: 'inter', sans-serif;
+}
+
+.MessageFormInput::placeholder {
+    color: #FFFFFF80;
+}
