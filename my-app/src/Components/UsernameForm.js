@@ -1,24 +1,24 @@
 import React, { useState } from "react";
-import { sendMessage } from "../sendMessage";
+import { updateUsername } from "../updateUsername";
 
-export function MessageForm({ user }) {
-  const [value, setValue] = useState("");
+export function UsernameForm({ user, onUpdate }) {
+  const [value, setValue] = useState(user.name);
 
   const onSubmit = (e) => {
     //regarder par rapport au chargement
-    sendMessage(value);
-    setValue("");
+    updateUsername(value);
+    onUpdate(value);
     e.preventDefault();
   }
 
   return user !== null ? (
     <div>
       <form onSubmit={(e) => onSubmit(e)}>
-        <label htmlFor="messageContent">Zone de message :</label>
+        <label htmlFor="usernameContent">Changer de pseudo :</label>
         <input
           type="text"
-          name="messageContent"
-          placeholder="Envoyer un message dans 💬 -général"
+          name="usernameContent"
+          placeholder="Nouveau pseudo ici..."
           onChange={(e) => setValue(e.target.value)}
           value={value}
         />

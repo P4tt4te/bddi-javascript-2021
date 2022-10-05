@@ -1,15 +1,27 @@
-export async function getCryptoCoin() {
-  await fetch("https://api.coinranking.com/v2/coins?symbols[]=BTC", {
-    method: "GET", // *GET, POST, PUT, DELETE, etc.
-    mode: "no-cors",
+export function getCryptoCoin() {
+  fetch("https://api.coinranking.com/v2/coins?symbols[]=BTC", {
     headers: {
-      "Content-Type": "application/json",
-      "x-access-token":
-        "coinranking3f183752ff98e851ccca0ec55ff282f0d7a62a264f61f863",
-      "Access-Control-Allow-Origin": "*",
+      accept: "*/*",
+      "accept-language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7",
+      "cache-control": "no-cache",
+      pragma: "no-cache",
+      "sec-ch-ua":
+        '"Chromium";v="106", "Google Chrome";v="106", "Not;A=Brand";v="99"',
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": '"Windows"',
+      "sec-fetch-dest": "empty",
+      "sec-fetch-mode": "no-cors",
+      "sec-fetch-site": "cross-site",
     },
+    referrer: "http://localhost:3001/",
+    referrerPolicy: "strict-origin-when-cross-origin",
+    body: null,
+    method: "GET",
+    mode: "no-cors",
+    credentials: "omit",
   })
     .then((response) => {
+      console.log(response);
       if (response.ok) {
         return response.json();
       }
