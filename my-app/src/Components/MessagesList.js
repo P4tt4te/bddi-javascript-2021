@@ -1,12 +1,13 @@
 import React from "react";
 import { formatDate } from "../Helper/formatDate";
+import "./MessagesList.css";
 
 export function MessagesList({messages}) {
 
   return messages.length > 0 ? (
-    <div>
+    <div className="MessagesListContainer">
       {messages.map((message) => (
-        <div key={message.id}>
+        <div className="MessagesListContent box" key={message.id}>
             <span>Date : {formatDate(message.time)}</span>
             <span> par {message.user.name}</span>
             <p>{ message.value }</p>

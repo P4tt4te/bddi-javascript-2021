@@ -112,7 +112,7 @@ export function App() {
         </div>
       </div>
       <div className="ChatContainer box">
-        <div>
+        <div className="ChatContainerContent">
           {historyMessages && (
             <>
               <h2>MessagesHistoryList :</h2>
