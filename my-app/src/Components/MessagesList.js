@@ -47,7 +47,7 @@ export function MessagesList({ messages, room }) {
                         <div className="CryptoMessageCoinGecko">
                           <span>powered by </span>
                           <img
-                            height={50}
+                            height={30}
                             width={80}
                             src={coinGeckoLogo}
                             alt="coinGecko"

@@ -5,7 +5,15 @@ export async function sendMessage(message, room) {
   console.log("send message : " + message);
   console.log("room: " + room);
   if (message.startsWith("/price ")) {
-    let obj = await getCryptoCoin("bitcoin");
+    let text = message.split(" ");
+    console.log("text :");
+    console.log(text);
+    let obj;
+    if(text.length > 1 && text[1] !== "") {
+      obj = await getCryptoCoin(text[1]);
+    } else {
+      obj = await getCryptoCoin("bitcoin");
+    }
     let newmessage =
       "/price-api/" +
       obj.name +
