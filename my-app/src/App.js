@@ -5,6 +5,7 @@ import { MessagesList } from "./Components/MessagesList";
 import { sendMessage } from "./sendMessage";
 import "./App.css";
 import { getCryptoCoin } from "./Api/getCryptoCoin";
+import { LoginForm } from "./Components/LoginForm";
 import { MessageForm } from "./Components/MessageForm";
 import { UsernameForm } from "./Components/UsernameForm";
 import logoImage from "./Assets/logo.svg";
@@ -18,6 +19,7 @@ export function App() {
   const [historyMessages, setHistoryMessages] = useState(null);
   const [chatModal, setChatModal] = useState(false);
   const [avatarModal, setAvatarModal] = useState(false);
+  const [login, setLogin] = useState(false);
 
   useEffect(() => {
     socket.on("connect", () => {
@@ -45,16 +47,9 @@ export function App() {
     };
     socket.on("userConnection", userConnectionListener);
 
-    const userDisconnectionListener = (arg) => {
-      const filteredUsers = users.filter((user) => arg.id === user.id);
-      setUsers(filteredUsers);
-    };
-    socket.on("userDisconnection", userDisconnectionListener);
-
     return () => {
       socket.off("message", messageListener);
       socket.off("userConnection", userConnectionListener);
-      socket.off("userDisconnection", userDisconnectionListener);
     };
   }, []);
 
@@ -64,14 +59,23 @@ export function App() {
       console.log(arg);
       console.log(users);
       const indexNewUser = users.findIndex((user) => user.id === arg.id);
-      console.log('index new user : '+indexNewUser);
+      console.log("index new user : " + indexNewUser);
       newUsers[indexNewUser] = arg;
       setUsers(newUsers);
     };
     socket.on("updateUsername", updateUsername);
 
-    return () => socket.off("updateUsername", updateUsername);
-  },[users]);
+    const userDisconnectionListener = (arg) => {
+      const filteredUsers = users.filter((user) => arg.id !== user.id);
+      setUsers(filteredUsers);
+    };
+    socket.on("userDisconnection", userDisconnectionListener);
+
+    return () => {
+      socket.off("updateUsername", updateUsername);
+      socket.off("userDisconnection", userDisconnectionListener);
+    };
+  }, [users]);
 
   const showHistory = () => {
     socket.on("messages", (arg) => {
@@ -79,24 +83,6 @@ export function App() {
     });
     socket.emit("getMessages");
   };
-
-  /*
-
-  const userListUpdate = () => {
-    socket.on("userConnection", (arg) => {
-      console.log("userConnection :" + arg);
-    
-      setUsers((prevUsers) => {
-        return [...prevUsers, arg];
-      });
-    });
-
-    socket.on("userDisconnection", (arg) => {
-      const filteredUsers = users.filter((user) => arg.id !== user.id);
-      setUsers(filteredUsers);
-    });
-  };
-  */
 
   useEffect(() => {
     console.log("My username = " + username);
@@ -108,75 +94,89 @@ export function App() {
 
   return (
     <div className="App">
-      <div className="Menu">
-        <div className="MenuTitle">
-          <img src={logoImage} alt="logo" />
-          <h1 className="MenuTitleText">Blockchat</h1>
-        </div>
-        <div className="ChannelMenu box">
-          <span>Liste des channels :</span>
-          <div className="ChannelMenuList">
-            <div className="ChannelMenuListElement">
-              <span>#💬 -général</span>
+      {login ? (
+        <>
+          <div className="Menu">
+            <div className="MenuTitle">
+              <img src={logoImage} alt="logo" />
+              <h1 className="MenuTitleText">Blockchat</h1>
             </div>
-            <div className="ChannelMenuListElement">
-              <span>#🚀 -cryptomonnaie</span>
+            <div className="ChannelMenu box">
+              <span>Liste des channels :</span>
+              <div className="ChannelMenuList">
+                <div className="ChannelMenuListElement">
+                  <span>#💬 -général</span>
+                </div>
+                <div className="ChannelMenuListElement">
+                  <span>#🚀 -cryptomonnaie</span>
+                </div>
+              </div>
+            </div>
+            <div
+              className={
+                avatarModal ? "AvatarMenu on box" : "AvatarMenu off box"
+              }
+            >
+              <div className="AvatarMenuList box">
+                <h2 className="AvatarMenuListHeader">Utilisateurs : </h2>
+                <UsersList users={users} />
+              </div>
+              <div className="AvatarMenuAction">
+                <img
+                  onClick={() => setAvatarModal(!avatarModal)}
+                  src={avatarImage}
+                  alt="Logo Avatar"
+                />
+                <UsernameForm
+                  user={{ id: socket.id, name: username }}
+                  onUpdate={(val) => setUsername(val)}
+                />
+              </div>
             </div>
           </div>
-        </div>
-        <div
-          className={avatarModal ? "AvatarMenu on box" : "AvatarMenu off box"}
-        >
-          <div className="AvatarMenuList box">
-            <h2 className="AvatarMenuListHeader">Utilisateurs : </h2>
-            <UsersList users={users} />
+          <div className="ChatContainer box">
+            <div className="ChatContainerContent">
+              {historyMessages && (
+                <>
+                  <h2>MessagesHistoryList :</h2>
+                  <MessagesList messages={historyMessages} />
+                </>
+              )}
+              <h2>MessagesList : </h2>
+              <MessagesList messages={messages} />
+            </div>
+            <div className="ChatContainerAction">
+              <div
+                className={
+                  chatModal
+                    ? "ChatContainerActionModal on"
+                    : "ChatContainerActionModal off"
+                }
+              >
+                <button onClick={() => showHistory()}>
+                  Avoir l'historique
+                </button>
+                <button onClick={() => getCryptoCoin("bitcoin")}>
+                  getCryptoCoin
+                </button>
+              </div>
+              <div
+                className="ChatContainerActionAdd"
+                onClick={() => setChatModal(!chatModal)}
+              >
+                <img src={addImage} alt="Plus options" />
+              </div>
+              <MessageForm user={{ id: socket.id, name: username }} />
+            </div>
           </div>
-          <div className="AvatarMenuAction">
-            <img
-              onClick={() => setAvatarModal(!avatarModal)}
-              src={avatarImage}
-              alt="Logo Avatar"
-            />
-            <UsernameForm
-              user={{ id: socket.id, name: username }}
-              onUpdate={(val) => setUsername(val)}
-            />
-          </div>
+        </>
+      ) : (
+        <div className="loginContainer">
+          <span>Blockchat</span>
+          <LoginForm onSubmitEvent={() => setLogin(true)} onUpdate={(val) => setUsername(val)} />
+          <span>Edmy Inc. (72h project)</span>
         </div>
-      </div>
-      <div className="ChatContainer box">
-        <div className="ChatContainerContent">
-          {historyMessages && (
-            <>
-              <h2>MessagesHistoryList :</h2>
-              <MessagesList messages={historyMessages} />
-            </>
-          )}
-          <h2>MessagesList : </h2>
-          <MessagesList messages={messages} />
-        </div>
-        <div className="ChatContainerAction">
-          <div
-            className={
-              chatModal
-                ? "ChatContainerActionModal on"
-                : "ChatContainerActionModal off"
-            }
-          >
-            <button onClick={() => showHistory()}>Avoir l'historique</button>
-            <button onClick={() => getCryptoCoin("bitcoin")}>
-              getCryptoCoin
-            </button>
-          </div>
-          <div
-            className="ChatContainerActionAdd"
-            onClick={() => setChatModal(!chatModal)}
-          >
-            <img src={addImage} alt="Plus options" />
-          </div>
-          <MessageForm user={{ id: socket.id, name: username }} />
-        </div>
-      </div>
+      )}
     </div>
   );
 }

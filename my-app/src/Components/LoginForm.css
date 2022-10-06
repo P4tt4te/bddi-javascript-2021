@@ -1,0 +1,29 @@
+.LoginFormContainer {
+    width: 100%;
+}
+
+.LoginForm {
+  display: flex;
+  gap: 5px;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  padding-right: 3px;
+}
+
+.LoginFormInput {
+  padding: 5px;
+  outline: none;
+  border-radius: 15px;
+  background: transparent;
+  color: #FFFFFF;
+  border: none;
+  font-size: 1.25rem;
+  width: 100%;
+  font-weight: 300;
+  font-family: 'inter', sans-serif;
+}
+
+.LoginFormInput::placeholder {
+    color: #FFFFFF80;
+}
