@@ -35,6 +35,9 @@ export function MessageForm({ user, room }) {
       case "cryptoBlockChat":
         setPlaceholder("Envoyer un message dans 🚀 -cryptomonnaie");
         break;
+      case "nftBlockChat":
+        setPlaceholder("Envoyer un message dans 🖼️ -nft");
+        break;
       default:
         setPlaceholder("Envoyer un message...");
     }
@@ -61,8 +64,10 @@ export function MessageForm({ user, room }) {
           className="ChatContainerActionModalBlock"
         >
           <span className="ChatContainerActionModalTitle">/price *nom*</span>
-          <p>Information sur une cryptomonnaie</p>
-          <span>ex: bitcoin,litecoin,dogecoin...</span>
+          <div>
+            <p>Information sur une cryptomonnaie</p>
+            <span>ex: bitcoin,litecoin,dogecoin...</span>
+          </div>
         </div>
       </div>
       <div

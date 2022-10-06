@@ -32,9 +32,10 @@
 }
 
 .ChatContainerActionModalTitle {
-  padding: 3px;
-  background: #FFFFFF1A;
+  padding: 3px 7px;
+  background: #ffffff1a;
   border-radius: 10px;
+  font-size: 1rem;
 }
 
 .ChatContainerAction {
@@ -50,9 +51,9 @@
 
 .ChatContainerActionModal.on {
   position: absolute;
-  top: -150px;
-  left: 0;
-  background: #C9C9C91A;
+  top: -100px;
+  left: -10px;
+  background: #c9c9c91a;
   backdrop-filter: blur(50px);
   padding: 10px;
   border-radius: 15px;
@@ -66,7 +67,7 @@
 }
 
 .ChatContainerActionModalBlock {
-  background: #000000B3;
+  background: #000000b3;
   cursor: pointer;
   border-radius: 15px;
   display: flex;
@@ -75,10 +76,13 @@
   backdrop-filter: blur(10px);
 }
 
-.ChatContainerActionModalBlock>div {
-  display:flex;
+.ChatContainerActionModalBlock > div {
+  display: flex;
   flex-direction: column;
-  justify-content: space-between;
+}
+
+.ChatContainerActionModalBlock > div > span {
+  font-size: 0.6rem;
 }
 
 .ChatContainerActionModalBlock p {

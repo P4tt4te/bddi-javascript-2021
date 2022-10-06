@@ -26,6 +26,11 @@
     margin:0;
 }
 
+.ChartContainer {
+    width: 400px;
+    height: 200px;
+}
+
 .CryptoMessage {
     display: flex;
     flex-direction: column;
@@ -99,4 +104,10 @@
     border-radius: 10px;
     margin-bottom: 5px;
     height: max-content;
+}
+
+.CryptoGraphBottom {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }

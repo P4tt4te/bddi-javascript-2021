@@ -48,6 +48,7 @@ export function App() {
     socket.on("userConnection", userConnectionListener);
 
     socket.emit("joinRoom", "cryptoBlockChat");
+    socket.emit("joinRoom", "nftBlockChat");
 
     return () => {
       socket.off("message", messageListener);
@@ -125,6 +126,16 @@ export function App() {
                   }
                 >
                   <span>#🚀 -cryptomonnaie</span>
+                </div>
+                <div
+                  onClick={() => setRoom("nftBlockChat")}
+                  className={
+                    room === "nftBlockChat"
+                      ? "ChannelMenuListElement active"
+                      : "ChannelMenuListElement"
+                  }
+                >
+                  <span>#🖼️ -nft</span>
                 </div>
               </div>
             </div>
