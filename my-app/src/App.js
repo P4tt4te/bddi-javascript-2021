@@ -12,7 +12,7 @@ import addImage from "./Assets/add.svg";
 import avatarImage from "./Assets/profil.svg";
 
 export function App() {
-  const [users, setUsers] = useState(null);
+  const [users, setUsers] = useState([]);
   const [username, setUsername] = useState("Anonymous");
   const [messages, setMessages] = useState([]);
   const [historyMessages, setHistoryMessages] = useState(null);
@@ -26,17 +26,52 @@ export function App() {
     });
     socket.on("users", (arg) => {
       setUsers(arg);
-      console.log("users:" + arg);
+      console.log("users:");
+      console.log(arg);
     });
     socket.emit("getUsers");
+
     const messageListener = (arg) => {
       console.log("new message " + arg.value);
       console.log("argid " + arg.id);
       setMessages((laliste) => [...laliste, arg]);
     };
     socket.on("message", messageListener);
-    return () => socket.off("message", messageListener);
+
+    const userConnectionListener = (arg) => {
+      console.log("userConnection :" + arg);
+
+      setUsers((prevUsers) => [...prevUsers, arg]);
+    };
+    socket.on("userConnection", userConnectionListener);
+
+    const userDisconnectionListener = (arg) => {
+      const filteredUsers = users.filter((user) => arg.id === user.id);
+      setUsers(filteredUsers);
+    };
+    socket.on("userDisconnection", userDisconnectionListener);
+
+    return () => {
+      socket.off("message", messageListener);
+      socket.off("userConnection", userConnectionListener);
+      socket.off("userDisconnection", userDisconnectionListener);
+    };
   }, []);
+
+  useEffect(() => {
+    const updateUsername = (arg) => {
+      const newUsers = users;
+      console.log(arg);
+      console.log(users);
+      const indexNewUser = users.findIndex((user) => user.id === arg.id);
+      console.log('index new user : '+indexNewUser);
+      newUsers[indexNewUser] = arg;
+      setUsers(newUsers);
+    };
+    socket.on("updateUsername", updateUsername);
+
+    return () => socket.off("updateUsername", updateUsername);
+  },[users]);
 
   const showHistory = () => {
     socket.on("messages", (arg) => {
@@ -49,10 +84,8 @@ export function App() {
 
   const userListUpdate = () => {
     socket.on("userConnection", (arg) => {
-      let userlistconnection = users;
-      userlistconnection.push(arg);
       console.log("userConnection :" + arg);
-      setUsers(userlistconnection);
+    
       setUsers((prevUsers) => {
         return [...prevUsers, arg];
       });
