@@ -3,12 +3,12 @@ import { sendMessage } from "../sendMessage";
 import './MessageForm.css';
 import sendArrow from "../Assets/send_arrow.svg";
 
-export function MessageForm({ user }) {
+export function MessageForm({ user, room }) {
   const [value, setValue] = useState("");
 
   const onSubmit = (e) => {
     //regarder par rapport au chargement
-    sendMessage(value);
+    sendMessage(value,room);
     setValue("");
     e.preventDefault();
   }

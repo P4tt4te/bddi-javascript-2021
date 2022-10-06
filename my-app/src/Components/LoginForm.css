@@ -1,5 +1,13 @@
 .LoginFormContainer {
-    width: 100%;
+  width: 100%;
+  max-width: 550px;
+  background: #00000026;
+  border-radius: 15px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
 
 .LoginForm {
@@ -12,18 +20,18 @@
 }
 
 .LoginFormInput {
-  padding: 5px;
+  padding: 10px;
   outline: none;
   border-radius: 15px;
-  background: transparent;
-  color: #FFFFFF;
+  background: #ffffff1a;
+  color: #ffffff;
   border: none;
   font-size: 1.25rem;
   width: 100%;
   font-weight: 300;
-  font-family: 'inter', sans-serif;
+  font-family: "inter", sans-serif;
 }
 
 .LoginFormInput::placeholder {
-    color: #FFFFFF80;
+  color: #ffffff80;
 }

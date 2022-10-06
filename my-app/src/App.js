@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { socket } from "./socket";
 import { UsersList } from "./Components/UsersList";
 import { MessagesList } from "./Components/MessagesList";
-import { sendMessage } from "./sendMessage";
 import "./App.css";
 import { getCryptoCoin } from "./Api/getCryptoCoin";
 import { LoginForm } from "./Components/LoginForm";
@@ -20,6 +19,7 @@ export function App() {
   const [chatModal, setChatModal] = useState(false);
   const [avatarModal, setAvatarModal] = useState(false);
   const [login, setLogin] = useState(false);
+  const [room, setRoom] = useState("general");
 
   useEffect(() => {
     socket.on("connect", () => {
@@ -36,6 +36,7 @@ export function App() {
     const messageListener = (arg) => {
       console.log("new message " + arg.value);
       console.log("argid " + arg.id);
+      console.log("room : " + arg.room);
       setMessages((laliste) => [...laliste, arg]);
     };
     socket.on("message", messageListener);
@@ -46,6 +47,8 @@ export function App() {
       setUsers((prevUsers) => [...prevUsers, arg]);
     };
     socket.on("userConnection", userConnectionListener);
+
+    socket.emit("joinRoom", "cryptoBlockChat");
 
     return () => {
       socket.off("message", messageListener);
@@ -104,10 +107,24 @@ export function App() {
             <div className="ChannelMenu box">
               <span>Liste des channels :</span>
               <div className="ChannelMenuList">
-                <div className="ChannelMenuListElement">
+                <div
+                  onClick={() => setRoom("general")}
+                  className={
+                    room === "general"
+                      ? "ChannelMenuListElement active"
+                      : "ChannelMenuListElement"
+                  }
+                >
                   <span>#💬 -général</span>
                 </div>
-                <div className="ChannelMenuListElement">
+                <div
+                  onClick={() => setRoom("cryptoBlockChat")}
+                  className={
+                    room === "cryptoBlockChat"
+                      ? "ChannelMenuListElement active"
+                      : "ChannelMenuListElement"
+                  }
+                >
                   <span>#🚀 -cryptomonnaie</span>
                 </div>
               </div>
@@ -143,7 +160,7 @@ export function App() {
                 </>
               )}
               <h2>MessagesList : </h2>
-              <MessagesList messages={messages} />
+              <MessagesList messages={messages} room={room} />
             </div>
             <div className="ChatContainerAction">
               <div
@@ -166,15 +183,20 @@ export function App() {
               >
                 <img src={addImage} alt="Plus options" />
               </div>
-              <MessageForm user={{ id: socket.id, name: username }} />
+              <MessageForm user={{ id: socket.id, name: username }} room={room} />
             </div>
           </div>
         </>
       ) : (
-        <div className="loginContainer">
-          <span>Blockchat</span>
-          <LoginForm onSubmitEvent={() => setLogin(true)} onUpdate={(val) => setUsername(val)} />
-          <span>Edmy Inc. (72h project)</span>
+        <div className="LoginContainer">
+          <div className="LoginContainerBlock">
+            <span>Blockchat</span>
+            <LoginForm
+              onSubmitEvent={() => setLogin(true)}
+              onUpdate={(val) => setUsername(val)}
+            />
+            <span>Edmy Inc. (72h project)</span>
+          </div>
         </div>
       )}
     </div>
