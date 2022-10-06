@@ -16,7 +16,8 @@ export function App() {
   const [username, setUsername] = useState("Anonymous");
   const [messages, setMessages] = useState([]);
   const [historyMessages, setHistoryMessages] = useState(null);
-  const [modal, setModal] = useState(false);
+  const [chatModal, setChatModal] = useState(false);
+  const [avatarModal, setAvatarModal] = useState(false);
 
   useEffect(() => {
     socket.on("connect", () => {
@@ -45,10 +46,6 @@ export function App() {
   };
 
   /*
-socket.on("messages", (arg) => {
-    setHistoryMessages(arg);
-  });
-  socket.emit("getMessages");
 
   const userListUpdate = () => {
     socket.on("userConnection", (arg) => {
@@ -94,18 +91,28 @@ socket.on("messages", (arg) => {
             </div>
           </div>
         </div>
-        <div className="AvatarMenu box">
-          <img src={avatarImage} alt="Logo Avatar" />
-          <UsernameForm
-            user={{ id: socket.id, name: username }}
-            onUpdate={(val) => setUsername(val)}
-          />
+        <div
+          className={avatarModal ? "AvatarMenu on box" : "AvatarMenu off box"}
+        >
+          <div className="AvatarMenuList box">
+            <h2 className="AvatarMenuListHeader">Utilisateurs : </h2>
+            <UsersList users={users} />
+          </div>
+          <div className="AvatarMenuAction">
+            <img
+              onClick={() => setAvatarModal(!avatarModal)}
+              src={avatarImage}
+              alt="Logo Avatar"
+            />
+            <UsernameForm
+              user={{ id: socket.id, name: username }}
+              onUpdate={(val) => setUsername(val)}
+            />
+          </div>
         </div>
       </div>
       <div className="ChatContainer box">
         <div>
-          <h2>UsersList : </h2>
-          <UsersList users={users} />
           {historyMessages && (
             <>
               <h2>MessagesHistoryList :</h2>
@@ -118,7 +125,7 @@ socket.on("messages", (arg) => {
         <div className="ChatContainerAction">
           <div
             className={
-              modal
+              chatModal
                 ? "ChatContainerActionModal on"
                 : "ChatContainerActionModal off"
             }
@@ -130,7 +137,7 @@ socket.on("messages", (arg) => {
           </div>
           <div
             className="ChatContainerActionAdd"
-            onClick={() => setModal(!modal)}
+            onClick={() => setChatModal(!chatModal)}
           >
             <img src={addImage} alt="Plus options" />
           </div>

@@ -1,7 +1,10 @@
 const uuidv4 = require("uuid").v4;
 
 const messages = new Set();
+const rooms = new Set();
 const usersSockets = new Map();
+
+const defaultRoom = "general";
 
 const defaultUser = {
   id: uuidv4(),
@@ -41,6 +44,14 @@ class Connection {
     // On connection, send a user-connection event containing user info
     this.sendNewUser(this.id, this.name);
 
+    this.socket.join(defaultRoom);
+
+    socket.on("joinRoom", this.handleJoinRoom);
+    socket.on("leaveRoom", this.handleLeaveRoom);
+    socket.on("getRooms", this.getRooms);
+
+    socket.on("privateMessage", this.handlePrivateMessage);
+
     socket.on("getUsers", () => this.sendUsers());
     socket.on("setUsername", (name) => this.setUsername(name));
 
@@ -55,6 +66,25 @@ class Connection {
     socket.on("connect_error", (err) => {
       console.log(`connect_error due to ${err.message}`);
     });
+  }
+
+  getRooms() {
+    this.socket.emit("getRooms", rooms);
+  }
+
+  handleLeaveRoom(roomName) {
+    this.socket.leave(roomName);
+  }
+
+  handleJoinRoom(roomName) {
+    this.socket.join(roomName);
+    rooms.add(roomName);
+  }
+
+  handlePrivateMessage(receiverSocketId, message) {
+    this.socket
+      .to(receiverSocketId)
+      .emit("privateMessage", this.socket.id, message);
   }
 
   setAvatar(avatar) {
@@ -94,8 +124,12 @@ class Connection {
     this.io.sockets.emit("updateUsername", newUser);
   }
 
-  sendMessage(message) {
-    this.io.sockets.emit("message", message);
+  sendMessage(message, room) {
+    if (room) {
+      this.io.to(room).emit("message", message);
+    } else {
+      this.io.to("general").emit("message", message);
+    }
   }
 
   getMessages() {
@@ -107,10 +141,12 @@ class Connection {
   /**
    *
    * @param {} message
-   * @example {type: MESSAGES_TYPE, value: "mon message", user: "Mon custom name"}
+   * @example {type: MESSAGES_TYPE, value: "mon message", user: "Mon custom name", room: "room_string"}
    */
   handleMessage(clientMsg) {
     let type = null;
+    let room = defaultRoom;
+
     let customUser;
     if (typeof clientMsg === "object") {
       type = clientMsg.type;
@@ -118,17 +154,23 @@ class Connection {
       if (type === MESSAGE_TYPES.BOT) {
         customUser = clientMsg.user;
       }
+
+      if (clientMsg.room) {
+        room = clientMsg.room;
+      }
     }
+
     const message = {
       id: uuidv4(),
       user: customUser || usersSockets.get(this.socket) || defaultUser,
       value: type === null ? clientMsg : clientMsg.value,
       time: Date.now(),
+      room,
       type,
     };
 
     messages.add(message);
-    this.sendMessage(message);
+    this.sendMessage(message, room);
   }
 
   disconnect() {

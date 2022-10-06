@@ -71,7 +71,62 @@
 
 .AvatarMenu {
   display: flex;
+  flex-direction: column;
+  transition: 0.4s ease-in-out all;
+  overflow-y: hidden;
+  justify-content: flex-end;
+  height: 100%;
+}
+
+.AvatarMenu.on {
+  max-height: 500px;
+}
+
+.AvatarMenu.off {
+  max-height: 55px;
+}
+
+.AvatarMenuList {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
   padding: 10px;
+  margin: 15px 15px 0 15px;
+  height: 415px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.AvatarMenuListHeader {
+  margin: 0;
+}
+
+/* width */
+.AvatarMenuList::-webkit-scrollbar {
+  width: 10px;
+  overflow: hidden;
+}
+
+/* Track */
+.AvatarMenuList::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.AvatarMenuList::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+.AvatarMenuList::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.AvatarMenuAction {
+  display: flex;
+  padding: 10px;
+  gap: 5px;
+  align-items: center;
 }
 
 .ChatContainer {

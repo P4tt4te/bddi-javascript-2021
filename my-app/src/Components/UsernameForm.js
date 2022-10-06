@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { updateUsername } from "../updateUsername";
+import "./UsernameForm.css";
 
 export function UsernameForm({ user, onUpdate }) {
   const [value, setValue] = useState(user.name);
@@ -9,7 +10,7 @@ export function UsernameForm({ user, onUpdate }) {
     updateUsername(value);
     onUpdate(value);
     e.preventDefault();
-  }
+  };
 
   return user !== null ? (
     <div>
@@ -17,6 +18,7 @@ export function UsernameForm({ user, onUpdate }) {
         <input
           type="text"
           name="usernameContent"
+          className="UsernameFormInput"
           placeholder="Nouveau pseudo ici..."
           onChange={(e) => setValue(e.target.value)}
           value={value}

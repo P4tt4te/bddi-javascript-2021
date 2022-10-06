@@ -1,0 +1,21 @@
+.UsernameForm {
+  display: flex;
+  gap: 5px;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  padding-right: 3px;
+}
+
+.UsernameFormInput {
+  padding: 5px;
+  outline: none;
+  border-radius: 15px;
+  background: transparent;
+  color: #ffffff80;
+  border: none;
+  font-size: 1rem;
+  width: 100%;
+  font-weight: 300;
+  font-family: "inter", sans-serif;
+}
