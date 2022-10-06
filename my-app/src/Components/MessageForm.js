@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { sendMessage } from "../sendMessage";
 import './MessageForm.css';
+import sendArrow from "../Assets/send_arrow.svg";
 
 export function MessageForm({ user }) {
   const [value, setValue] = useState("");
@@ -13,7 +14,7 @@ export function MessageForm({ user }) {
   }
 
   return user !== null ? (
-    <div className="MessageForm">
+    <div className="MessageFormContainer">
       <form className="MessageForm" onSubmit={(e) => onSubmit(e)}>
         <input
           type="text"
@@ -23,6 +24,7 @@ export function MessageForm({ user }) {
           onChange={(e) => setValue(e.target.value)}
           value={value}
         />
+        <input type="image" src={sendArrow} alt="envoyer" />
       </form>
     </div>
   ) : (

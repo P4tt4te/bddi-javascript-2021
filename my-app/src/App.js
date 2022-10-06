@@ -28,16 +28,13 @@ export function App() {
       console.log("users:" + arg);
     });
     socket.emit("getUsers");
-    socket.on("message", (arg) => {
+    const messageListener = (arg) => {
       console.log("new message " + arg.value);
       console.log("argid " + arg.id);
-      if (true) {
-        console.log("yes");
-        setMessages((laliste) => [...laliste, arg]);
-      } else {
-        console.log("message existe déjà");
-      }
-    });
+      setMessages((laliste) => [...laliste, arg]);
+    };
+    socket.on("message", messageListener);
+    return () => socket.off("message", messageListener);
   }, []);
 
   const showHistory = () => {

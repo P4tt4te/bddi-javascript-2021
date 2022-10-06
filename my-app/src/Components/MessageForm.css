@@ -1,5 +1,14 @@
-.MessageForm {
+.MessageFormContainer {
     width: 100%;
+}
+
+.MessageForm {
+  display: flex;
+  gap: 5px;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  padding-right: 3px;
 }
 
 .MessageFormInput {
