@@ -9,9 +9,11 @@ export function MessagesList({ messages, room }) {
         .filter((message) => message.room === room)
         .map((message) => (
           <div className="MessagesListContent box" key={message.id}>
-            <span>Date : {formatDate(message.time)}</span>
-            <span> par {message.user.name}</span>
-            <p>{message.value}</p>
+            <div>
+              <span className="MessagesListContentName">{message.user.name}</span>
+              <span className="MessagesListContentDate"> - {formatDate(message.time)}</span>
+            </div>
+            <p className="MessagesListContentMessage">{message.value}</p>
           </div>
         ))}
     </div>

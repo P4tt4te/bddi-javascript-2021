@@ -22,7 +22,7 @@ export function LoginForm({ onSubmitEvent, onUpdate }) {
           type="text"
           className="LoginFormInput"
           name="messageContent"
-          placeholder="Choisi un pseudo"
+          placeholder="Choisis un pseudo"
           onChange={(e) => setValue(e.target.value)}
           value={value}
         />

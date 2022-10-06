@@ -6,4 +6,22 @@
 
 .MessagesListContent {
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.MessagesListContentName {
+    font-size: 1.25rem;
+    color: #E6A33A;
+}
+
+.MessagesListContentDate {
+    font-size: 0.9375rem;
+    color: #FFFFFFBF;
+    font-style: italic;
+}
+
+.MessagesListContentMessage {
+    margin:0;
 }
