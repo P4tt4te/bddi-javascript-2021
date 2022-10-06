@@ -9,8 +9,8 @@ export function MessagesList({ messages, room }) {
       {messages
         .filter((message) => message.room === room)
         .map((message) => {
-          if (message.value.startsWith("/price-api/")) {
-            let obj = message.value.split("/");
+          if (message.value.startsWith("|price-api|")) {
+            let obj = message.value.split("|");
             console.log(obj);
             return (
               <div className="MessagesListContent box" key={message.id}>
@@ -26,7 +26,7 @@ export function MessagesList({ messages, room }) {
                             width={48}
                             height={48}
                             src={
-                              "https://assets.coingecko.com/coins/images/1/small/bitcoin.png?1547033579"
+                              obj[8]
                             }
                             alt="/value coin logo"
                           />

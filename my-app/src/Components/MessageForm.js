@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { sendMessage } from "../sendMessage";
 import "./MessageForm.css";
-import { getCryptoCoin } from "../Api/getCryptoCoin";
 import sendArrow from "../Assets/send_arrow.svg";
 import addImage from "../Assets/add.svg";
-import cryptoDataImage from "../Assets/cryptodata_logo.svg";
 
 export function MessageForm({ user, room }) {
   const [value, setValue] = useState("");
@@ -14,17 +12,20 @@ export function MessageForm({ user, room }) {
   );
 
   const testValue = (word) => {
-    if(word.startsWith("/") && !word.includes(" ")) {
+    if (chatModal) {
+      setChatModal(false);
+    }
+    if (word.startsWith("/") && !word.includes(" ")) {
       commandFilter(word);
     } else {
       setValue(word);
     }
-  }
+  };
 
   const commandFilter = (word) => {
     console.log("commandFilter");
     setValue(word);
-  }
+  };
 
   useEffect(() => {
     switch (room) {
@@ -44,7 +45,6 @@ export function MessageForm({ user, room }) {
     e.preventDefault();
     sendMessage(value, room);
     setValue("");
-    
   };
 
   return user !== null ? (
@@ -56,13 +56,13 @@ export function MessageForm({ user, room }) {
             : "ChatContainerActionModal off"
         }
       >
-        <button onClick={() => getCryptoCoin("bitcoin")}>getCryptoCoin</button>
-        <div className="ChatContainerActionModalBlock">
-          <img src={cryptoDataImage} alt="CryptoData logo" />
-          <div>
-            <span>CryptoData</span>
-            <p>Information sur une cryptomonnaie</p>
-          </div>
+        <div
+          onClick={() => testValue("/price bitcoin")}
+          className="ChatContainerActionModalBlock"
+        >
+          <span className="ChatContainerActionModalTitle">/price *nom*</span>
+          <p>Information sur une cryptomonnaie</p>
+          <span>ex: bitcoin,litecoin,dogecoin...</span>
         </div>
       </div>
       <div

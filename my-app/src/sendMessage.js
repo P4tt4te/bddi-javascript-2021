@@ -15,18 +15,20 @@ export async function sendMessage(message, room) {
       obj = await getCryptoCoin("bitcoin");
     }
     let newmessage =
-      "/price-api/" +
+      "|price-api|" +
       obj.name +
-      "/" +
+      "|" +
       obj.symbol.toUpperCase() +
-      "/" +
+      "|" +
       obj.coingecko_rank +
-      "/" +
+      "|" +
       obj.market_data.market_cap_change_percentage_24h +
-      "/" +
+      "|" +
       obj.market_data.current_price.eur +
-      "/" +
-      obj.market_data.current_price.usd;
+      "|" +
+      obj.market_data.current_price.usd +
+      "|" +
+      obj.image.small;
     socket.emit("message", { type: "", value: newmessage, room: room });
   } else {
     socket.emit("message", { type: "", value: message, room: room });

@@ -30,3 +30,57 @@
 .MessageFormInput::placeholder {
   color: #ffffff80;
 }
+
+.ChatContainerActionModalTitle {
+  padding: 3px;
+  background: #FFFFFF1A;
+  border-radius: 10px;
+}
+
+.ChatContainerAction {
+  display: flex;
+  border: 1px solid white;
+  padding: 7px;
+  border-radius: 15px;
+}
+
+.ChatContainerActionAdd {
+  height: 34px;
+}
+
+.ChatContainerActionModal.on {
+  position: absolute;
+  top: -150px;
+  left: 0;
+  background: #C9C9C91A;
+  backdrop-filter: blur(50px);
+  padding: 10px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.ChatContainerActionModal.off {
+  display: none;
+}
+
+.ChatContainerActionModalBlock {
+  background: #000000B3;
+  cursor: pointer;
+  border-radius: 15px;
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  backdrop-filter: blur(10px);
+}
+
+.ChatContainerActionModalBlock>div {
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ChatContainerActionModalBlock p {
+  margin: 0;
+}
