@@ -148,7 +148,7 @@ export function MessagesList({ messages, room }) {
                             <Area
                               type="monotone"
                               dataKey="uv"
-                              stroke="#ffffff"
+                              stroke="#E6A33A"
                               fill="#ffffffa8"
                             />
                           </AreaChart>

@@ -69,6 +69,16 @@ export function MessageForm({ user, room }) {
             <span>ex: bitcoin,litecoin,dogecoin...</span>
           </div>
         </div>
+        <div
+          onClick={() => testValue("/lastweek bitcoin")}
+          className="ChatContainerActionModalBlock"
+        >
+          <span className="ChatContainerActionModalTitle">/lastweek *nom*</span>
+          <div>
+            <p>Les valeurs (EUR/crypto) des 7 derniers jours.</p>
+            <span>ex: bitcoin,litecoin,dogecoin...</span>
+          </div>
+        </div>
       </div>
       <div
         className="ChatContainerActionAdd"
