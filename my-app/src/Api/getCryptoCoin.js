@@ -1,7 +1,7 @@
 
 
-export const getCryptoCoin = (coinname) => {
-  fetch(`https://api.coingecko.com/api/v3/coins/${coinname}?localization=false`, {
+export async function getCryptoCoin(coinname) {
+  return await fetch(`https://api.coingecko.com/api/v3/coins/${coinname}?localization=false`, {
     headers: {
       'Content-Type': 'application/json'
     },

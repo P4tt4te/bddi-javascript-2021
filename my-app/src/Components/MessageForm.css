@@ -1,5 +1,8 @@
 .MessageFormContainer {
-    width: 100%;
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  position: relative;
 }
 
 .MessageForm {
@@ -16,14 +19,14 @@
   outline: none;
   border-radius: 15px;
   background: transparent;
-  color: #FFFFFF;
+  color: #ffffff;
   border: none;
   font-size: 1.25rem;
   width: 100%;
   font-weight: 300;
-  font-family: 'inter', sans-serif;
+  font-family: "inter", sans-serif;
 }
 
 .MessageFormInput::placeholder {
-    color: #FFFFFF80;
+  color: #ffffff80;
 }

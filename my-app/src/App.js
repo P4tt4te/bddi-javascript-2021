@@ -3,13 +3,12 @@ import { socket } from "./socket";
 import { UsersList } from "./Components/UsersList";
 import { MessagesList } from "./Components/MessagesList";
 import "./App.css";
-import { getCryptoCoin } from "./Api/getCryptoCoin";
 import { LoginForm } from "./Components/LoginForm";
 import { MessageForm } from "./Components/MessageForm";
 import { UsernameForm } from "./Components/UsernameForm";
 import logoImage from "./Assets/logo.svg";
-import addImage from "./Assets/add.svg";
 import avatarImage from "./Assets/profil.svg";
+
 
 export function App() {
   const [users, setUsers] = useState([]);
@@ -163,27 +162,10 @@ export function App() {
               <MessagesList messages={messages} room={room} />
             </div>
             <div className="ChatContainerAction">
-              <div
-                className={
-                  chatModal
-                    ? "ChatContainerActionModal on"
-                    : "ChatContainerActionModal off"
-                }
-              >
-                <button onClick={() => showHistory()}>
-                  Avoir l'historique
-                </button>
-                <button onClick={() => getCryptoCoin("bitcoin")}>
-                  getCryptoCoin
-                </button>
-              </div>
-              <div
-                className="ChatContainerActionAdd"
-                onClick={() => setChatModal(!chatModal)}
-              >
-                <img src={addImage} alt="Plus options" />
-              </div>
-              <MessageForm user={{ id: socket.id, name: username }} room={room} />
+              <MessageForm
+                user={{ id: socket.id, name: username }}
+                room={room}
+              />
             </div>
           </div>
         </>

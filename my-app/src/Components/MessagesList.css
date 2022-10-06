@@ -25,3 +25,75 @@
 .MessagesListContentMessage {
     margin:0;
 }
+
+.CryptoMessage {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.CryptoMessageTop {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.CryptoMessageHeader {
+    display: flex;
+    gap: 10px;
+    align-items: end;
+}
+
+.CryptoMessageRanking {
+    font-size: 2rem;
+    font-weight: 600;
+    background: #0000001A;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.CryptoMessageSymbol {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.CryptoMessageValueBottom {
+    display: flex;
+    gap: 10px;
+    height: min-content;
+}
+
+.CryptoMessageBottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.CryptoMessageValueBox {
+    background: blue;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.CryptoMessageCoinGecko {
+    display: flex;
+    align-items: center;
+}
+
+.red {
+    background: red;
+    padding: 5px 8px 5px 8px;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    height: max-content;
+}
+
+.green {
+    background: green;
+    padding: 5px 8px 5px 8px;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    height: max-content;
+}
