@@ -15,7 +15,6 @@ export function App() {
   const [username, setUsername] = useState("Anonymous");
   const [messages, setMessages] = useState([]);
   const [historyMessages, setHistoryMessages] = useState(null);
-  const [chatModal, setChatModal] = useState(false);
   const [avatarModal, setAvatarModal] = useState(false);
   const [login, setLogin] = useState(false);
   const [room, setRoom] = useState("general");

@@ -1,62 +1,70 @@
-# bddi-javascript-2021
+# Getting Started with Create React App
 
-BDDI JavaScript 2021 - Workshop material
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Chat WebSocket Events
+## Available Scripts
 
-### EMIT getUsers
+In the project directory, you can run:
 
-Emit a `users` event on the server with an array of currently connected users payloads, example:
+### `npm start`
 
-```
-[
-  { id: '1fe4792f-4141-44da-9bd7-bef4cfbd4916', name: 'Anonymous' },
-  { id: '1fed22f-4141-44da-9bd7-oaiz123dazia3', name: 'Anonymous' },
-  { id: '1124792f-4141-44da-9bd7-oazubdoazd12', name: 'Anonymous' },
-  { id: '1ae4122f-4141-44da-9bd7-iuezra12323g', name: 'Anonymous' },
-]
-```
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-## User connection / disconnection
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-Each time a user connect (or disconnect) himself two emits happen:
+### `npm test`
 
-Emit a `users` event on the server with the new array of currently connected users payloads, as it does on getUsers event receiption.
-Emit a `userConnection` or `userDisconnection` event on the server with a payload of the user that just connected or disconnected himself, example:
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-```
-  { id: '1fe4792f-4141-44da-9bd7-bef4cfbd4916', name: 'Anonymous' }
-```
+### `npm run build`
 
-### EMIT setUsername
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-Need a `string` representing the username
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-### ON updateUsername
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-Receive the user that had just updated his username
+### `npm run eject`
 
-```
-  { id: '1fe4792f-4141-44da-9bd7-bef4cfbd4916', name: 'new username' }
-```
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-### EMIT getMessages
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Emit a `messages` event with the array of full messages
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-```
-{
-  id: "sdfsdfsdfdsf",
-  user: {id: "sdfdsf", name: "toto"},
-  value: "message",
-  time: 123123123,
-};
-```
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-### ON messages
+## Learn More
 
-Event sent to receive the whole message history
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-### ON message
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-Event sent to receive a new message
+### Code Splitting
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+
+### Analyzing the Bundle Size
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
