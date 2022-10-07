@@ -27,7 +27,7 @@ export function MessagesList({ messages, room }) {
                   <span className="MessagesListContentDate">
                     /price {obj[2]} par {message.user.name}
                   </span>
-                  <div className="MessagesListContent box">
+                  <div className="MessagesListContent underBox">
                     <div className="CryptoMessage">
                       <div className="CryptoMessageTop">
                         <div className="CryptoMessageHeader">
@@ -79,43 +79,43 @@ export function MessagesList({ messages, room }) {
               {
                 name: "Sam",
                 uv: obj[3],
-                pv: 2400,
+                price: 2400,
                 amt: 2400,
               },
               {
                 name: "Dim",
                 uv: obj[4],
-                pv: 1398,
+                price: 1398,
                 amt: 2210,
               },
               {
                 name: "Lun",
                 uv: obj[5],
-                pv: 9800,
+                price: 9800,
                 amt: 2290,
               },
               {
                 name: "Mar",
                 uv: obj[6],
-                pv: 3908,
+                price: 3908,
                 amt: 2000,
               },
               {
                 name: "Mer",
                 uv: obj[7],
-                pv: 4800,
+                price: 4800,
                 amt: 2181,
               },
               {
                 name: "Jeu",
                 uv: obj[8],
-                pv: 3800,
+                price: 3800,
                 amt: 2500,
               },
               {
                 name: "Hier",
                 uv: obj[9],
-                pv: 4300,
+                price: 4300,
                 amt: 2100,
               },
             ];
@@ -126,7 +126,7 @@ export function MessagesList({ messages, room }) {
                   <span className="MessagesListContentDate">
                     /lastweek {obj[2]} par {message.user.name}
                   </span>
-                  <div className="MessagesListContent box">
+                  <div className="MessagesListContent underBox">
                     <span className="ChartContainerTitle">Les 7 derniers jours du {obj[2]}</span>
                     <div className="CryptoMessage">
                       <div className="ChartContainer">
@@ -148,7 +148,7 @@ export function MessagesList({ messages, room }) {
                             <Tooltip />
                             <Area
                               type="monotone"
-                              dataKey="uv"
+                              dataKey="price"
                               stroke="#E6A33A"
                               fill="#ffffffa8"
                             />

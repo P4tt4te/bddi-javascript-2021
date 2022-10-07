@@ -7,14 +7,15 @@ import { LoginForm } from "./Components/LoginForm";
 import { MessageForm } from "./Components/MessageForm";
 import { UsernameForm } from "./Components/UsernameForm";
 import logoImage from "./Assets/logo.svg";
+import clockImage from "./Assets/clock.svg";
 import avatarImage from "./Assets/profil.svg";
-
 
 export function App() {
   const [users, setUsers] = useState([]);
   const [username, setUsername] = useState("Anonymous");
   const [messages, setMessages] = useState([]);
   const [historyMessages, setHistoryMessages] = useState(null);
+  const [historyMessagesLoading, setHistoryMessagesLoading] = useState(false);
   const [avatarModal, setAvatarModal] = useState(false);
   const [login, setLogin] = useState(false);
   const [room, setRoom] = useState("general");
@@ -47,7 +48,6 @@ export function App() {
     socket.on("userConnection", userConnectionListener);
 
     socket.emit("joinRoom", "cryptoBlockChat");
-    socket.emit("joinRoom", "nftBlockChat");
 
     return () => {
       socket.off("message", messageListener);
@@ -80,7 +80,10 @@ export function App() {
   }, [users]);
 
   const showHistory = () => {
+    setHistoryMessagesLoading(true);
     socket.on("messages", (arg) => {
+      console.log("historymessage :");
+      console.log(arg);
       setHistoryMessages(arg);
     });
     socket.emit("getMessages");
@@ -125,16 +128,6 @@ export function App() {
                 >
                   <span>#🚀 -cryptomonnaie</span>
                 </div>
-                <div
-                  onClick={() => setRoom("nftBlockChat")}
-                  className={
-                    room === "nftBlockChat"
-                      ? "ChannelMenuListElement active"
-                      : "ChannelMenuListElement"
-                  }
-                >
-                  <span>#🖼️ -nft</span>
-                </div>
               </div>
             </div>
             <div
@@ -150,6 +143,7 @@ export function App() {
                 <img
                   onClick={() => setAvatarModal(!avatarModal)}
                   src={avatarImage}
+                  className="buttonAnimation"
                   alt="Logo Avatar"
                 />
                 <UsernameForm
@@ -161,13 +155,36 @@ export function App() {
           </div>
           <div className="ChatContainer box">
             <div className="ChatContainerContent">
-              {historyMessages && (
+              {historyMessages ? (
                 <>
-                  <h2>MessagesHistoryList :</h2>
-                  <MessagesList messages={historyMessages} />
+                  <MessagesList messages={historyMessages} room={room} />
                 </>
+              ) : (
+                <div className="historyMessageContainer">
+                  <div
+                    onClick={() => showHistory()}
+                    className="historyMessageButton buttonAnimation"
+                  >
+                    <img
+                      width={20}
+                      height={20}
+                      src={clockImage}
+                      alt="horloge"
+                    />
+                    <p className="historyMessage">
+                      Charger tous les messages ancien ?
+                    </p>
+                  </div>
+                </div>
               )}
-              <h2>MessagesList : </h2>
+              {historyMessagesLoading && (
+                <div className="historyMessageContainer">
+                  <div className="historyMessageButton">
+                    <p className="historyMessage">Chargement...</p>
+                  </div>
+                </div>
+              )}
+
               <MessagesList messages={messages} room={room} />
             </div>
             <div className="ChatContainerAction">

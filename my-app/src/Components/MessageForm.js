@@ -91,7 +91,7 @@ export function MessageForm({ user, room }) {
         )}
       </div>
       <div
-        className="ChatContainerActionAdd"
+        className="ChatContainerActionAdd buttonAnimation"
         onClick={() => setChatModal(!chatModal)}
       >
         <img src={addImage} alt="Plus options" />
@@ -102,6 +102,7 @@ export function MessageForm({ user, room }) {
           type="text"
           className="MessageFormInput"
           name="messageContent"
+          required
           placeholder={placeholder}
           onChange={(e) => testValue(e.target.value)}
           value={value}
