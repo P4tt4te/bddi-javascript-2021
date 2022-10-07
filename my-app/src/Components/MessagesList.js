@@ -173,7 +173,7 @@ export function MessagesList({ messages, room }) {
             );
           }
           return (
-            <div className="MessagesListContent box" key={message.id}>
+            <div className="MessagesListContent underBox" key={message.id}>
               <div>
                 <span className="MessagesListContentName">
                   {message.user.name}

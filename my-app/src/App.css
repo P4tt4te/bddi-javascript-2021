@@ -1,5 +1,5 @@
 :root {
-  --background: #1D1D1D;
+  --background: #1d1d1d;
 }
 
 .App {
@@ -14,12 +14,16 @@
 }
 
 .box {
+  box-shadow: inset -5px -5px 30px rgba(255, 255, 255, 0.04),
+    inset 5px 5px 30px rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
   background-color: #00000026;
   border-radius: 15px;
 }
 
 .underBox {
-  
+  background-color: #00000026;
+  border-radius: 15px;
 }
 
 .Menu {
@@ -65,12 +69,12 @@
 }
 
 .ChannelMenuListElement.active {
-  background: #FFFFFF1A;
+  background: #ffffff1a;
   cursor: default;
 }
 
 .ChannelMenuListElement:hover {
-  background: #FFFFFF1A;
+  background: #ffffff1a;
   cursor: pointer;
 }
 
@@ -191,7 +195,7 @@
   position: absolute;
   top: -150px;
   left: 0;
-  background: #C9C9C91A;
+  background: #c9c9c91a;
   backdrop-filter: blur(50px);
   padding: 10px;
   border-radius: 15px;
@@ -205,7 +209,7 @@
 }
 
 .ChatContainerActionModalBlock {
-  background: #000000B3;
+  background: #000000b3;
   cursor: pointer;
   border-radius: 15px;
   display: flex;
@@ -214,8 +218,8 @@
   backdrop-filter: blur(10px);
 }
 
-.ChatContainerActionModalBlock>div {
-  display:flex;
+.ChatContainerActionModalBlock > div {
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
@@ -249,7 +253,5 @@
   align-items: center;
   font-style: italic;
   padding: 5px;
-  color: #FFFFFF80;
+  color: #ffffff80;
 }
-
-
