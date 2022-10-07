@@ -55,30 +55,40 @@ export function MessageForm({ user, room }) {
       <div
         className={
           chatModal
-            ? "ChatContainerActionModal on"
+            ? `ChatContainerActionModal ${room} on`
             : "ChatContainerActionModal off"
         }
       >
-        <div
-          onClick={() => testValue("/price bitcoin")}
-          className="ChatContainerActionModalBlock"
-        >
-          <span className="ChatContainerActionModalTitle">/price *nom*</span>
-          <div>
-            <p>Information sur une cryptomonnaie</p>
-            <span>ex: bitcoin,litecoin,dogecoin...</span>
-          </div>
-        </div>
-        <div
-          onClick={() => testValue("/lastweek bitcoin")}
-          className="ChatContainerActionModalBlock"
-        >
-          <span className="ChatContainerActionModalTitle">/lastweek *nom*</span>
-          <div>
-            <p>Les valeurs (EUR/crypto) des 7 derniers jours.</p>
-            <span>ex: bitcoin,litecoin,dogecoin...</span>
-          </div>
-        </div>
+        {room !== "general" ? (
+          <>
+            <div
+              onClick={() => testValue("/price bitcoin")}
+              className="ChatContainerActionModalBlock"
+            >
+              <span className="ChatContainerActionModalTitle">
+                /price *nom*
+              </span>
+              <div>
+                <p>Information sur une cryptomonnaie</p>
+                <span>ex: bitcoin,litecoin,dogecoin...</span>
+              </div>
+            </div>
+            <div
+              onClick={() => testValue("/lastweek bitcoin")}
+              className="ChatContainerActionModalBlock"
+            >
+              <span className="ChatContainerActionModalTitle">
+                /lastweek *nom*
+              </span>
+              <div>
+                <p>Les valeurs (EUR/crypto) des 7 derniers jours.</p>
+                <span>ex: bitcoin,litecoin,dogecoin...</span>
+              </div>
+            </div>
+          </>
+        ) : (
+          <div className="ChatContainerActionModalBlock">les commandes ne sont pas dispo dans général...</div>
+        )}
       </div>
       <div
         className="ChatContainerActionAdd"

@@ -62,6 +62,10 @@
   gap: 5px;
 }
 
+.ChatContainerActionModal.general.on {
+  top: -80px;
+}
+
 .ChatContainerActionModal.off {
   display: none;
 }

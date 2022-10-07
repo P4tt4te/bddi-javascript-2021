@@ -27,8 +27,17 @@
 }
 
 .ChartContainer {
-    width: 400px;
+    width: 60%;
     height: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ChartContainerTitle {
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 300;
+    margin-bottom: 5px;
 }
 
 .CryptoMessage {

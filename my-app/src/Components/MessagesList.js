@@ -77,43 +77,43 @@ export function MessagesList({ messages, room }) {
 
             const data = [
               {
-                name: "Lun",
+                name: "Sam",
                 uv: obj[3],
                 pv: 2400,
                 amt: 2400,
               },
               {
-                name: "Mar",
+                name: "Dim",
                 uv: obj[4],
                 pv: 1398,
                 amt: 2210,
               },
               {
-                name: "Mer",
+                name: "Lun",
                 uv: obj[5],
                 pv: 9800,
                 amt: 2290,
               },
               {
-                name: "Jeu",
+                name: "Mar",
                 uv: obj[6],
                 pv: 3908,
                 amt: 2000,
               },
               {
-                name: "Ven",
+                name: "Mer",
                 uv: obj[7],
                 pv: 4800,
                 amt: 2181,
               },
               {
-                name: "Sam",
+                name: "Jeu",
                 uv: obj[8],
                 pv: 3800,
                 amt: 2500,
               },
               {
-                name: "Dim",
+                name: "Hier",
                 uv: obj[9],
                 pv: 4300,
                 amt: 2100,
@@ -127,6 +127,7 @@ export function MessagesList({ messages, room }) {
                     /lastweek {obj[2]} par {message.user.name}
                   </span>
                   <div className="MessagesListContent box">
+                    <span className="ChartContainerTitle">Les 7 derniers jours du {obj[2]}</span>
                     <div className="CryptoMessage">
                       <div className="ChartContainer">
                         <ResponsiveContainer width="100%" height="100%">
@@ -142,8 +143,8 @@ export function MessagesList({ messages, room }) {
                             }}
                           >
                             <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="name" />
-                            <YAxis />
+                            <XAxis tick={{ fill: '#E6A33A' }} tickLine={{ stroke: '#E6A33A' }} dataKey="name" axisLine={{ stroke: '#EAF0F4' }} />
+                            <YAxis tick={{ fill: '#E6A33A' }} tickLine={{ stroke: '#E6A33A' }} axisLine={{ stroke: '#EAF0F4' }} />
                             <Tooltip />
                             <Area
                               type="monotone"

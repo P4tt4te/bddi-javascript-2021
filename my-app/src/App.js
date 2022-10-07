@@ -102,7 +102,6 @@ export function App() {
           <div className="Menu">
             <div className="MenuTitle">
               <img src={logoImage} alt="logo" />
-              <h1 className="MenuTitleText">Blockchat</h1>
             </div>
             <div className="ChannelMenu box">
               <span>Liste des channels :</span>
