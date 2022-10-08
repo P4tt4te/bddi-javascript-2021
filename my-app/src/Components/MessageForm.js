@@ -23,7 +23,6 @@ export function MessageForm({ user, room }) {
   };
 
   const commandFilter = (word) => {
-    console.log("commandFilter");
     setValue(word);
   };
 
@@ -87,7 +86,9 @@ export function MessageForm({ user, room }) {
             </div>
           </>
         ) : (
-          <div className="ChatContainerActionModalBlock">les commandes ne sont pas dispo dans général...</div>
+          <div className="ChatContainerActionModalBlock">
+            les commandes ne sont pas dispo dans général...
+          </div>
         )}
       </div>
       <div

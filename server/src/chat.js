@@ -64,7 +64,7 @@ class Connection {
 
     socket.on("disconnect", () => this.disconnect());
     socket.on("connect_error", (err) => {
-      console.log(`connect_error due to ${err.message}`);
+      
     });
   }
 

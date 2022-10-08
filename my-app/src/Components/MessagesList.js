@@ -20,7 +20,7 @@ export function MessagesList({ messages, room }) {
         .map((message) => {
           if (message.value.startsWith("|price-api|")) {
             let obj = message.value.split("|");
-            console.log(obj);
+
             return (
               <div className="MessagesListContent box" key={message.id}>
                 <div>
@@ -73,7 +73,6 @@ export function MessagesList({ messages, room }) {
           }
           if (message.value.startsWith("|lastweek-api|")) {
             let obj = message.value.split("|");
-            console.log(obj);
 
             const data = [
               {
@@ -127,7 +126,9 @@ export function MessagesList({ messages, room }) {
                     /lastweek {obj[2]} par {message.user.name}
                   </span>
                   <div className="MessagesListContent underBox">
-                    <span className="ChartContainerTitle">Les 7 derniers jours du {obj[2]}</span>
+                    <span className="ChartContainerTitle">
+                      Les 7 derniers jours du {obj[2]}
+                    </span>
                     <div className="CryptoMessage">
                       <div className="ChartContainer">
                         <ResponsiveContainer width="100%" height="100%">
@@ -143,8 +144,17 @@ export function MessagesList({ messages, room }) {
                             }}
                           >
                             <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis tick={{ fill: '#E6A33A' }} tickLine={{ stroke: '#E6A33A' }} dataKey="name" axisLine={{ stroke: '#EAF0F4' }} />
-                            <YAxis tick={{ fill: '#E6A33A' }} tickLine={{ stroke: '#E6A33A' }} axisLine={{ stroke: '#EAF0F4' }} />
+                            <XAxis
+                              tick={{ fill: "#E6A33A" }}
+                              tickLine={{ stroke: "#E6A33A" }}
+                              dataKey="name"
+                              axisLine={{ stroke: "#EAF0F4" }}
+                            />
+                            <YAxis
+                              tick={{ fill: "#E6A33A" }}
+                              tickLine={{ stroke: "#E6A33A" }}
+                              axisLine={{ stroke: "#EAF0F4" }}
+                            />
                             <Tooltip />
                             <Area
                               type="monotone"

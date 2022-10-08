@@ -2,13 +2,13 @@ import { getCryptoCoin, getCryptoWeekData } from "./Api/getCryptoCoin";
 import { socket } from "./socket";
 
 export async function sendMessage(message, room) {
-  console.log("send message : " + message);
-  console.log("room: " + room);
+  
+  
   if (room !== "general") {
     if (message.startsWith("/price ")) {
       let text = message.split(" ");
-      console.log("text :");
-      console.log(text);
+      
+      
       let obj;
       if (text.length > 1 && text[1] !== "") {
         obj = await getCryptoCoin(text[1].toLowerCase());
@@ -33,8 +33,8 @@ export async function sendMessage(message, room) {
       socket.emit("message", { type: "", value: newmessage, room: room });
     } else if (message.startsWith("/lastweek ")) {
       let text = message.split(" ");
-      console.log("text :");
-      console.log(text);
+      
+      
       let obj;
       let textname;
       if (text.length > 1 && text[1] !== "") {

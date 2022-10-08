@@ -21,28 +21,18 @@ export function App() {
   const [room, setRoom] = useState("general");
 
   useEffect(() => {
-    socket.on("connect", () => {
-      console.log(socket.id); // x8WIv7-mJelg7on_ALbx
-      console.log("connect");
-    });
+    socket.on("connect", () => {});
     socket.on("users", (arg) => {
       setUsers(arg);
-      console.log("users:");
-      console.log(arg);
     });
     socket.emit("getUsers");
 
     const messageListener = (arg) => {
-      console.log("new message " + arg.value);
-      console.log("argid " + arg.id);
-      console.log("room : " + arg.room);
       setMessages((laliste) => [...laliste, arg]);
     };
     socket.on("message", messageListener);
 
     const userConnectionListener = (arg) => {
-      console.log("userConnection :" + arg);
-
       setUsers((prevUsers) => [...prevUsers, arg]);
     };
     socket.on("userConnection", userConnectionListener);
@@ -58,10 +48,9 @@ export function App() {
   useEffect(() => {
     const updateUsername = (arg) => {
       const newUsers = users;
-      console.log(arg);
-      console.log(users);
+
       const indexNewUser = users.findIndex((user) => user.id === arg.id);
-      console.log("index new user : " + indexNewUser);
+
       newUsers[indexNewUser] = arg;
       setUsers(newUsers);
     };
@@ -82,20 +71,14 @@ export function App() {
   const showHistory = () => {
     setHistoryMessagesLoading(true);
     socket.on("messages", (arg) => {
-      console.log("historymessage :");
-      console.log(arg);
       setHistoryMessages(arg);
     });
     socket.emit("getMessages");
   };
 
-  useEffect(() => {
-    console.log("My username = " + username);
-  }, [username]);
+  useEffect(() => {}, [username]);
 
-  useEffect(() => {
-    console.log("Messages list :" + messages);
-  }, [messages]);
+  useEffect(() => {}, [messages]);
 
   return (
     <div className="App">

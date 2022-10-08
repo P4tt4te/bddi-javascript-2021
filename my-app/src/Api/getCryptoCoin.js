@@ -9,13 +9,11 @@ export async function getCryptoCoin(coinname) {
     }
   )
     .then((response) => {
-      console.log(response);
       if (response.ok) {
         return response.json();
       }
     })
     .then((data) => {
-      console.log(data);
       return data;
     })
     .catch((error) => {
@@ -34,13 +32,11 @@ export async function getCryptoWeekData(coinname) {
     }
   )
     .then((response) => {
-      console.log(response);
       if (response.ok) {
         return response.json();
       }
     })
     .then((data) => {
-      console.log(data);
       return data;
     })
     .catch((error) => {
